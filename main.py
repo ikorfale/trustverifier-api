@@ -15,6 +15,9 @@ import httpx
 import os
 import logging
 
+# Import pilot router
+from pilot import router as pilot_router
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -36,6 +39,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include pilot router
+app.include_router(pilot_router)
 
 # Environment configuration
 TRUST_SCORE_API = os.getenv("TRUST_SCORE_API", "https://gerundium.sicmundus.dev/api/trust-score")
