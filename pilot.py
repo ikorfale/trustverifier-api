@@ -14,8 +14,8 @@ from pathlib import Path
 # Initialize router
 router = APIRouter(prefix="/pilot", tags=["pilot"])
 
-# Data directory
-PILOT_DATA_DIR = Path("pilot_data")
+# Data directory (use /tmp for Vercel compatibility)
+PILOT_DATA_DIR = Path("/tmp/pilot_data") if os.path.exists("/tmp") else Path("pilot_data")
 SNAPSHOTS_DIR = PILOT_DATA_DIR / "snapshots"
 SCORES_DIR = PILOT_DATA_DIR / "scores"
 
